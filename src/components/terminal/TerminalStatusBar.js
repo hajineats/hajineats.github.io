@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 
-export default function StatusBar(){
+export default function TerminalStatusBar(){
 	const WindowBar = styled.div`
       width: 100%;
       height: 30px;
