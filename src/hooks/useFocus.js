@@ -14,7 +14,6 @@ export const PromptText = styled.span`
   margin-right: 5px;
 `
 
-
 export const useFocus = () => {
 	const inputRef = useRef()
 	const focusInput = () => {
@@ -33,6 +32,7 @@ export const prettierHistory = (history) => {
 				return (
 					<><PromptText>{terminalPrompt}</PromptText>{array[CONTENT_INDEX]}</>)
 			}
+			return <></>
 		})
 		}
 
