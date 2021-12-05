@@ -46,9 +46,12 @@ export default function TerminalMainScreen() {
 	`
 	const TerminalInput = styled.span``
 
+	const handleTerminalClick = ()=>{
+		setFocus()
+	}
 
 	return (
-		<WindowContent>
+		<WindowContent onClick={handleTerminalClick}>
 			{prettierHistory(history)}
 			<PromptText>{terminalPrompt}</PromptText>
 			<TerminalInput ref={ref} onKeyDown={handleKey} contentEditable={true}>

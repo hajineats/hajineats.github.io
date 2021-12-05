@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import StatusBar from "./StatusBar";
+import TerminalStatusBar from "./TerminalStatusBar";
 import TerminalMainScreen from "./TerminalMainScreen";
 
 export default function Terminal() {
@@ -15,7 +15,7 @@ export default function Terminal() {
 	return (
 		<>
 			<Window>
-				<StatusBar/>
+				<TerminalStatusBar/>
 				<TerminalMainScreen/>
 			</Window>
 		</>
