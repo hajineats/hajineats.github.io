@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import {terminalFontSize} from "../../utils/fontsize";
-import {useState, useRef, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {
 	terminalPrompt,
 	messageSeparator,
-	TYPE_SYSTEM_TEXT,
 	TYPE_WITH_PROMPT_TEXT,
-	CONTENT_INDEX, TYPE_INDEX
 } from "../../utils/messageprotocol";
 import {prettierHistory, useFocus, PromptText} from "../../hooks/useFocus";
 
@@ -16,6 +14,7 @@ export default function TerminalMainScreen() {
 
 	useEffect(() => {
 		setFocus()
+		// eslint-disable-next-line
 	}, [history])
 
 	const handleKey = (e) => {
