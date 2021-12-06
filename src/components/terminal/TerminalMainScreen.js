@@ -41,7 +41,7 @@ export default function TerminalMainScreen() {
       setHistory(newHistory);
       setFocus();
     }
-    if (e.key == "Tab") {
+    if (e.key === "Tab") {
       e.preventDefault();
 
       console.log("tab pressed");
