@@ -6,13 +6,18 @@ I'm a final year SE student seeking for a graduate role for 2022 year-end.
     
 I have working knowledge and practical experiences in MERN, Java and Objective C. 
 
-Interested in good software design, TDD, Agile. Love leaving a record of what I learn (here's my #@blog,https://http://optimizemarginality.tistory.com/#@), and sharing it with others. Tramping/travelling is my annual ritual.`,
+Interested in good software design, TDD, Agile. Love leaving a record of what I learn (optimizemarginality.tistory.com/), and sharing it with others. Tramping/travelling is my annual ritual.`,
   },
   "skills.txt": {
-    content: "Java\nReact\nAWS\n",
+    content:
+      "**> familiar**: Java, Javascript/React, Python, git, JPA Hibernate\n" +
+      "**= familiar**: C, Objective-C, Android, html/css, bash, JAX-RS\n" +
+      "**< familiar**: AWS EC2, MATLAB",
   },
 };
 
+const commandNotFound =
+  "Command not found. Type **help** to see available commands.";
 export default function processCommand(command) {
   const splitCommand = command.split(" ");
 
@@ -24,7 +29,7 @@ export default function processCommand(command) {
     case "help":
       return help();
     default:
-      return "Command not found. Type **help** to see available commands";
+      return commandNotFound;
   }
 }
 
@@ -41,6 +46,10 @@ function help() {
     cat: {
       usage: "cat <filename>",
       help: "Displays content of the file",
+    },
+    clear: {
+      usage: "clear",
+      help: "Clears the console",
     },
   };
   var helpMessage = "";
@@ -79,6 +88,9 @@ function ls() {
 }
 
 function cat(file) {
+  if (!file) {
+    return commandNotFound;
+  }
   return files[file]["content"];
 }
 
