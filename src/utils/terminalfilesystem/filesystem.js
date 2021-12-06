@@ -1,5 +1,14 @@
 const files = {
-  skills: {
+  "aboutMe.txt": {
+    content: `Hi there! I'm Hajin. Really glad to see you here :)
+    
+I'm a final year SE student seeking for a graduate role for 2022 year-end. 
+    
+I have working knowledge and practical experiences in MERN, Java and Objective C. 
+
+Interested in good software design, TDD, Agile. Love leaving a record of what I learn (here's my #@blog,https://http://optimizemarginality.tistory.com/#@), and sharing it with others. Tramping/travelling is my annual ritual.`,
+  },
+  "skills.txt": {
     content: "Java\nReact\nAWS\n",
   },
 };
@@ -21,7 +30,7 @@ export default function processCommand(command) {
 
 function help() {
   const functionHelpMap = {
-    cmd: {
+    command: {
       usage: "usage",
       help: "help",
     },
@@ -38,7 +47,7 @@ function help() {
 
   const { maxHelpTotalLength, maxKeyLength, maxUsageLength, maxHelpLength } =
     getMaxLengths(functionHelpMap);
-  const horizontalBar = "_".repeat(maxHelpTotalLength - 1) + "\n";
+  const horizontalBar = "_".repeat(maxHelpTotalLength + 3) + "\n";
 
   helpMessage += horizontalBar;
 
@@ -70,7 +79,7 @@ function ls() {
 }
 
 function cat(file) {
-  return files[file];
+  return files[file]["content"];
 }
 
 const getMaxLengths = (map) => {

@@ -26,6 +26,12 @@ export default function TerminalMainScreen() {
       const systemReturns = `${TYPE_SYSTEM_TEXT}${messageSeparator}${processCommand(
         command
       )}\n`;
+
+      if (command.includes("clear")) {
+        setHistory([]);
+        return;
+      }
+
       // empty content
       ref.current.textContent = "";
 
@@ -34,6 +40,11 @@ export default function TerminalMainScreen() {
       e.preventDefault();
       setHistory(newHistory);
       setFocus();
+    }
+    if (e.key == "Tab") {
+      e.preventDefault();
+
+      console.log("tab pressed");
     }
   };
 
@@ -57,6 +68,7 @@ export default function TerminalMainScreen() {
 
   return (
     <WindowContent onClick={handleTerminalClick}>
+      {"Type `help` to display possible commands\n"}
       {prettierHistory(history)}
       <PromptText>{terminalPrompt}</PromptText>
       <TerminalInput
