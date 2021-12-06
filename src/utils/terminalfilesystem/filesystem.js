@@ -3,7 +3,6 @@ const files = {
     content: "Java\nReact\nAWS\n",
   },
 };
-var path = "/";
 
 export default function processCommand(command) {
   const splitCommand = command.split(" ");
@@ -73,6 +72,7 @@ function ls() {
 function cat(file) {
   return files[file];
 }
+
 const getMaxLengths = (map) => {
   var maxHelpTotalLength = 0;
   var maxKeyLength = 0;

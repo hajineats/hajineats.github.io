@@ -54,7 +54,7 @@ const processBold = (text) => {
   const splitText = text.split("**");
 
   for (var i = 0; i < splitText.length; i++) {
-    if (i % 2 != 0) {
+    if (i % 2 !== 0) {
       words.push(<Bold>{splitText[i]}</Bold>);
     } else {
       words.push(splitText[i]);
