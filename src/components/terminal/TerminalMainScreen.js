@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { terminalFontSize } from "../../utils/fontsize";
 import { useState, useEffect } from "react";
+import { fileArray } from "../../utils/terminalfilesystem/filesystem";
 import {
   terminalPrompt,
   messageSeparator,
@@ -9,7 +10,18 @@ import {
 } from "../../utils/messageprotocol";
 import { prettierHistory, useFocus, PromptText } from "../../hooks/useFocus";
 import processCommand from "../../utils/terminalfilesystem/filesystem";
-
+const WindowContent = styled.div`
+  height: 100%;
+  background: grey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  color: whitesmoke;
+  contenteditable: true;
+  font-size: ${terminalFontSize}px;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+`;
 export default function TerminalMainScreen() {
   const [history, setHistory] = useState([]);
   const [ref, setFocus] = useFocus();
@@ -43,23 +55,27 @@ export default function TerminalMainScreen() {
     }
     if (e.key === "Tab") {
       e.preventDefault();
+      const splitCommand = ref.current.textContent.split(" ");
+      var lastArg = splitCommand[splitCommand.length - 1];
+      // check if command is prefixed with ./
+      const isExecPrefixed = lastArg.startsWith("./");
+      if (isExecPrefixed) {
+        lastArg = lastArg.split("./")[1];
+      }
 
-      console.log("tab pressed");
+      const fileMatch = fileArray().filter((f) => f.startsWith(lastArg));
+
+      if (fileMatch) {
+        if (fileMatch[0]) {
+          splitCommand[splitCommand.length - 1] = fileMatch[0];
+          ref.current.textContent = isExecPrefixed
+            ? ["./", fileMatch[0]].join("")
+            : splitCommand.join(" ");
+        }
+      }
     }
   };
 
-  const WindowContent = styled.div`
-    height: 100%;
-    background: grey;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    color: whitesmoke;
-    contenteditable: true;
-    font-size: ${terminalFontSize}px;
-    white-space: pre-wrap;
-    overflow-y: scroll;
-  `;
   const TerminalInput = styled.span``;
 
   const handleTerminalClick = () => {
