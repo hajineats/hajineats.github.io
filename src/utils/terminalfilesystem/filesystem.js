@@ -1,3 +1,5 @@
+import { executeFile } from "./files";
+
 const files = {
   "aboutMe.txt": {
     content: `Hi there! I'm Hajin. Really glad to see you here :)
@@ -20,6 +22,11 @@ const commandNotFound =
   "Command not found. Type **help** to see available commands.";
 export default function processCommand(command) {
   const splitCommand = command.split(" ");
+
+  // if executable
+  if (splitCommand[0].startsWith("./")) {
+    return executeFile(splitCommand[0]);
+  }
 
   switch (splitCommand[0]) {
     case "ls":
