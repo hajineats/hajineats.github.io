@@ -6,8 +6,9 @@ const randomFacts = [
   "Of the Korean singers, I like Sun Si Kyung, Kim Dong Reul, Lee Juck, Naul, Lee Seung Gi. Sorry no BTS no Blackpink",
 ];
 
-export function executeFile(file) {
-  const fileName = file.split("./")[1];
+export function executeFile(command) {
+  // expected format: ./randomFact
+  const fileName = command.split("./")[1];
   return executables[fileName].executable();
 }
 
@@ -19,4 +20,9 @@ const executables = {
 
 function randomFact() {
   return randomFacts[Math.floor(Math.random() * randomFacts.length)];
+}
+
+// Files common methods
+export function listAllExecFiles() {
+  return Object.keys(executables).map((e) => `**${e}**`);
 }
