@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { terminalFontSize } from "../../utils/fontsize";
 import { useState, useEffect } from "react";
+import { fileArray } from "../../utils/terminalfilesystem/filesystem";
 import {
   terminalPrompt,
   messageSeparator,
@@ -43,8 +44,24 @@ export default function TerminalMainScreen() {
     }
     if (e.key === "Tab") {
       e.preventDefault();
+      const splitCommand = ref.current.textContent.split(" ");
+      var lastArg = splitCommand[splitCommand.length - 1];
+      // check if command is prefixed with ./
+      const isExecPrefixed = lastArg.startsWith("./");
+      if (isExecPrefixed) {
+        lastArg = lastArg.split("./")[1];
+      }
 
-      console.log("tab pressed");
+      const fileMatch = fileArray().filter((f) => f.startsWith(lastArg));
+
+      if (fileMatch) {
+        if (fileMatch[0]) {
+          splitCommand[splitCommand.length - 1] = fileMatch[0];
+          ref.current.textContent = isExecPrefixed
+            ? ["./", fileMatch[0]].join("")
+            : splitCommand.join(" ");
+        }
+      }
     }
   };
 

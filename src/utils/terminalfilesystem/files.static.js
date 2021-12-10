@@ -53,6 +53,10 @@ function help() {
       usage: "clear",
       help: "Clears the console",
     },
+    "<key>": {
+      usage: "press tab after some letters of file",
+      help: "tab autocompletes filename",
+    },
   };
   var helpMessage = "";
 

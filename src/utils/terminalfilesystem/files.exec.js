@@ -24,5 +24,5 @@ function randomFact() {
 
 // Files common methods
 export function listAllExecFiles() {
-  return Object.keys(executables).map((e) => `**${e}**`);
+  return Object.keys(executables);
 }
