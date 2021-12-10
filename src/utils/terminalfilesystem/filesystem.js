@@ -91,6 +91,11 @@ function cat(file) {
   if (!file) {
     return commandNotFound;
   }
+  if (!files[file]) {
+    return (
+      "Cannot find the file called " + file + ". Type **ls** to list files."
+    );
+  }
   return files[file]["content"];
 }
 
