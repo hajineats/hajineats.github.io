@@ -10,7 +10,18 @@ import {
 } from "../../utils/messageprotocol";
 import { prettierHistory, useFocus, PromptText } from "../../hooks/useFocus";
 import processCommand from "../../utils/terminalfilesystem/filesystem";
-
+const WindowContent = styled.div`
+  height: 100%;
+  background: grey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  color: whitesmoke;
+  contenteditable: true;
+  font-size: ${terminalFontSize}px;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+`;
 export default function TerminalMainScreen() {
   const [history, setHistory] = useState([]);
   const [ref, setFocus] = useFocus();
@@ -65,18 +76,6 @@ export default function TerminalMainScreen() {
     }
   };
 
-  const WindowContent = styled.div`
-    height: 100%;
-    background: grey;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    color: whitesmoke;
-    contenteditable: true;
-    font-size: ${terminalFontSize}px;
-    white-space: pre-wrap;
-    overflow-y: scroll;
-  `;
   const TerminalInput = styled.span``;
 
   const handleTerminalClick = () => {
