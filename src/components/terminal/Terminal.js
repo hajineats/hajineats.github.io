@@ -8,6 +8,9 @@ const Window = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  @media (max-width: 400px) {
+    height: 400px;
+  }
 `;
 export default function Terminal() {
   return (
