@@ -3,13 +3,14 @@ const commandNotFound =
 
 const files = {
   "aboutMe.txt": {
-    content: `Hi there! I'm Hajin. Really glad to see you here :)
+    content: `
+Hi there! I'm Hajin. Really glad to see you here :)
       
-  I'm a final year SE student seeking for a graduate role for 2022 year-end. 
+I'm a final year SE student seeking for a graduate role for 2022 year-end. 
       
-  I have working knowledge and practical experiences in MERN, Java and Objective C. 
+I have working knowledge and practical experiences in MERN, Java and Objective C. 
   
-  Interested in good software design, TDD, Agile. Love leaving a record of what I learn (optimizemarginality.tistory.com/), and sharing it with others. Tramping/travelling is my annual ritual.`,
+Interested in good software design, TDD, Agile. Love leaving a record of what I learn (optimizemarginality.tistory.com/), and sharing it with others. Tramping/travelling is my annual ritual.`,
   },
   "skills.txt": {
     content:
@@ -53,8 +54,12 @@ function help() {
       usage: "clear",
       help: "Clears the console",
     },
-    "<key>": {
-      usage: "press tab after some letters of file",
+    ">etc1": {
+      usage: "./<executable>",
+      help: "Executes an executable",
+    },
+    ">etc2": {
+      usage: "press tab",
       help: "tab autocompletes filename",
     },
   };
@@ -62,7 +67,7 @@ function help() {
 
   const { maxHelpTotalLength, maxKeyLength, maxUsageLength, maxHelpLength } =
     getMaxLengths(functionHelpMap);
-  const horizontalBar = "_".repeat(maxHelpTotalLength + 3) + "\n";
+  const horizontalBar = "_".repeat(maxHelpTotalLength + 8) + "\n";
 
   helpMessage += horizontalBar;
 
@@ -107,7 +112,7 @@ const getMaxLengths = (map) => {
   var maxUsageLength = 0;
   var maxHelpLength = 0;
   for (const key in map) {
-    const help = `| ${key} | ${map[key]["usage"]} | ${map[key]["help"]} |\n`;
+    const help = `|${key}|${map[key]["usage"]}|${map[key]["help"]}|\n`;
     maxHelpTotalLength = Math.max(help.length, maxHelpTotalLength);
 
     maxKeyLength = Math.max(key.length, maxKeyLength);
