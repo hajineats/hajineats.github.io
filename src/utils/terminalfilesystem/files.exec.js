@@ -2,18 +2,26 @@ const randomFacts = [
   "I can see the beach from my house",
   "M1 Mac Mini cannot run VM, so marking SE206 was a pain",
   "I like jAZz",
-  "Of the Korean singers, I like Sun Si Kyung, Kim Dong Reul, Lee Juck, Naul, Lee Seung Gi. Sorry no BTS no Blackpink",
+  "Of the Korean singers, I like Sun Si Kyung, Kim Dong Reul, Lee Juck, Naul, Lee Seung Gi",
   "Have you heard of the song 'All I need' by Jacob Collier? It gives an insight into how microtonality can be incorporated into pop musics.",
-  "In Year 13, I found King Lear to carry a very profound lesson. On the surface, it seems to suggest that falling into sweet words and turning away from the truth leads to self-destruction. But it makes you wonder if telling the truth was necessary - especailly if it would have worked for peaceful denouement of Lear's life. It's quite complex.",
   "I can play piano and violin at Grade 8 level",
-  "Robot cleaner is very nice - I recommend Roborock S7",
-  "I went for Hillary Trail for my Duke of Edinburgh Gold award, which was 80km walk over 4 nights & 5 days. Hydrating & sugar supplement (through chocolate bars, jellies) are essential. You would usually walk from 8 to 3 ish, and it gets quite dark even from early afternoon at a mountain.",
+  "Robot cleaner is very nice",
+  "I went for Hillary Trail for my Duke of Edinburgh Gold award, which was 80km walk over 4 nights & 5 days.",
+  "Hydrating (>3L) & sugar supplement (through chocolate bars, jellies) are essential for tramping",
+  "My favourite books thus far are King Lear and Macbeth",
+  "I need 9~10 hours of sleep per day",
+  "Samsung T7 SSD can be used to directly transfer phone media to SSD",
+  "Ipad is best used for quick diagrams, and maybe Netflix too (TV is better)",
+  "I have an electric guitar",
 ];
 
 export function executeFile(command) {
   // expected format: ./randomFact
   const fileName = command.split("./")[1];
-  return executables[fileName].executable();
+  if (executables[fileName]) {
+    return executables[fileName].executable();
+  }
+  return `${fileName} is not an executable or does not exist`;
 }
 
 const executables = {
@@ -22,8 +30,22 @@ const executables = {
   },
 };
 
+var traversedRandIndex = [];
+// Actually a pseudo random fact generator. Would try return unread fact
+// if all the facts have been read, it will reset the cycle
 function randomFact() {
-  return randomFacts[Math.floor(Math.random() * randomFacts.length)];
+  // if all the facts were traversed, reset the record
+  if (traversedRandIndex.length === randomFacts.length) {
+    traversedRandIndex = [];
+  }
+  // return unseen fact
+  const genRandIndex = () => Math.floor(Math.random() * randomFacts.length);
+  var randIndex = genRandIndex();
+  while (traversedRandIndex.includes(randIndex)) {
+    randIndex = genRandIndex();
+  }
+  traversedRandIndex = [...traversedRandIndex, randIndex];
+  return randomFacts[randIndex];
 }
 
 // Files common methods
