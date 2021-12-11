@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { terminalFontSize } from "../../utils/fontsize";
+import { terminalFontSize, phoneWidth } from "../../utils/constants";
 import { useState, useEffect } from "react";
 import { fileArray } from "../../utils/terminalfilesystem/filesystem";
 import {
@@ -21,6 +21,10 @@ const WindowContent = styled.div`
   font-size: ${terminalFontSize}px;
   white-space: pre-wrap;
   overflow-y: scroll;
+  @media (max-width: ${phoneWidth}px) {
+    font-size: ${terminalFontSize * 0.6}px;
+    line-height: 1.5em;
+  }
 `;
 export default function TerminalMainScreen() {
   const [history, setHistory] = useState([]);

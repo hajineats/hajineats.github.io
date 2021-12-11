@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { phoneWidth } from "../../utils/constants";
 const BottomDrop = styled.div`
   //  set document as parent
   position: absolute;
@@ -15,6 +16,9 @@ const Details = styled.h1`
 const SubDetails = styled.p`
   color: aliceblue;
   font-size: 14px;
+  @media (max-width: ${phoneWidth}px) {
+    display: none;
+  }
 `;
 export default function BottomInfo() {
   return (
