@@ -1,3 +1,5 @@
+import { phoneWidth } from "../constants";
+
 const commandNotFound =
   "Command not found. Type **help** to see available commands.";
 
@@ -54,11 +56,11 @@ function help() {
       usage: "clear",
       help: "Clears the console",
     },
-    ">etc1": {
+    TIP1: {
       usage: "./<executable>",
       help: "Executes an executable",
     },
-    ">etc2": {
+    TIP2: {
       usage: "press tab",
       help: "tab autocompletes filename",
     },
@@ -67,18 +69,26 @@ function help() {
 
   const { maxHelpTotalLength, maxKeyLength, maxUsageLength, maxHelpLength } =
     getMaxLengths(functionHelpMap);
-  const horizontalBar = "_".repeat(maxHelpTotalLength + 8) + "\n";
+  const width = window.innerWidth;
+  const horizontalBar =
+    width <= phoneWidth ? "\n" : "_".repeat(maxHelpTotalLength + 8) + "\n";
 
   helpMessage += horizontalBar;
 
   for (const key in functionHelpMap) {
-    var indivHelp = `| ${appendWhiteSpace(
-      key,
-      maxKeyLength
-    )} | ${appendWhiteSpace(
+    const keyName = appendWhiteSpace(key, maxKeyLength);
+    const keyUsage = appendWhiteSpace(
       functionHelpMap[key]["usage"],
       maxUsageLength
-    )} | ${appendWhiteSpace(functionHelpMap[key]["help"], maxHelpLength)} | \n`;
+    );
+    const keyHelp = appendWhiteSpace(
+      functionHelpMap[key]["help"],
+      maxHelpLength
+    );
+    var indivHelp =
+      width <= phoneWidth
+        ? `**${key}** (${functionHelpMap[key]["usage"]}): ${functionHelpMap[key]["help"]}\n`
+        : `| ${keyName} | ${keyUsage} | ${keyHelp} | \n`;
     helpMessage += indivHelp;
   }
   helpMessage += horizontalBar;

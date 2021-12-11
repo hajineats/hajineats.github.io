@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { phoneWidth } from "../../utils/constants";
 const WindowBar = styled.div`
   width: 100%;
   height: 30px;
@@ -35,6 +36,11 @@ const Control = styled.div`
     css`
       background-color: crimson;
     `}
+  @media(max-width: ${phoneWidth}px) {
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+  }
 `;
 export default function TerminalStatusBar() {
   return (

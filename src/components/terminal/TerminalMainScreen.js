@@ -22,7 +22,7 @@ const WindowContent = styled.div`
   white-space: pre-wrap;
   overflow-y: scroll;
   @media (max-width: ${phoneWidth}px) {
-    font-size: ${terminalFontSize * 0.6}px;
+    font-size: ${terminalFontSize * 0.4}px;
     line-height: 1.5em;
   }
 `;
