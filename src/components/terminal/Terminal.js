@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TerminalStatusBar from "./TerminalStatusBar";
 import TerminalMainScreen from "./TerminalMainScreen";
+import { phoneWidth } from "../../utils/constants";
 const Window = styled.div`
   width: 800px;
   height: 600px;
@@ -8,8 +9,8 @@ const Window = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  @media (max-width: 400px) {
-    height: 400px;
+  @media (max-width: ${phoneWidth}px) {
+    height: 200px;
   }
 `;
 export default function Terminal() {
