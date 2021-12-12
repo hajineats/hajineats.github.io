@@ -53,6 +53,7 @@ export default function TopDrop({screen, setScreen}) {
 
 	useEffect(() => {
 		brieflyShow()
+		// eslint-disable-next-line no-use-before-define
 	},[])
 	const handleSwitchScreen = (toScreen) => {
 		setScreen(toScreen)
