@@ -1,8 +1,5 @@
 import styled from "styled-components";
-
-
-export default function ProjectList() {
-	const List = styled.div`
+const List = styled.div`
       display: flex;
       flex-direction: column;
       & > * {
@@ -11,11 +8,8 @@ export default function ProjectList() {
 		height: 130px;
       }
 	`
-	const Description = styled.h1`
-      font-weight: 700;
-	`
 
-	const Container = styled.div`
+const Container = styled.div`
 		display: flex;
 	
 	  align-items: center;
@@ -23,12 +17,15 @@ export default function ProjectList() {
 
 	  }
 	`
-	const RepoCard = styled.div`
+const RepoCard = styled.div`
       color: black;
       border-radius: 10px;
       background-color: white;
 
 	`
+
+export default function ProjectList() {
+
 
 
 	return (
