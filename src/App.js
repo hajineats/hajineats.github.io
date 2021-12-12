@@ -4,6 +4,7 @@ import BottomInfo from "./components/bottominfo/BottomInfo";
 import Terminal from "./components/terminal/Terminal";
 import TopDrop from "./components/topdrop/TopDrop";
 import {useState} from "react";
+import ProjectList from "./components/projectlist/ProjectList";
 
 const Carousel = styled.div`
   height: 100vh;
@@ -29,10 +30,10 @@ const Screen = styled.div`
   float: left;
 
   ${(props) => props.first && css`
-    background-color: dodgerblue;
+    background-color: darkblue;
   `}
   ${(props) => props.second && css`
-    background-color: yellowgreen;
+    background-color: midnightblue;
   `}
   ${(props) => props.third && css`
     background-color: cornflowerblue;
@@ -61,9 +62,12 @@ export default function App() {
 						<Centered>
 							<Terminal />
 						</Centered>
-
 					</Screen>
-					<Screen second/>
+					<Screen second>
+						<Centered>
+							<ProjectList/>
+						</Centered>
+					</Screen>
 					<Screen third/>
 				</Screens>
 			</Carousel>
