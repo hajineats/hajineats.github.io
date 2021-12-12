@@ -3,11 +3,15 @@ import {useState, useEffect} from "react";
 
 
 const List = styled.div`
+overflow: hidden;
   display: flex;
   flex-direction: column;
   @media (max-height: 1000px) {
     height: 500px;
     overflow: scroll;
+  };
+  &::-webkit-scrollbar{
+	display: none;
   }
 `
 const Container = styled.div`

@@ -9,6 +9,8 @@ const Window = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+    margin: 20px;
+
   @media (max-width: ${phoneWidth}px) {
     height: 200px;
   }

@@ -26,6 +26,9 @@ const WindowContent = styled.div`
     font-size: ${terminalFontSize * 0.4}px;
     line-height: 1.5em;
   }
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `;
 export default function TerminalMainScreen() {
   const [history, setHistory] = useState([]);
