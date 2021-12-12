@@ -21,6 +21,7 @@ const WindowContent = styled.div`
   font-size: ${terminalFontSize}px;
   white-space: pre-wrap;
   overflow-y: scroll;
+  font-family: "JetBrains Mono", monospace;
   @media (max-width: ${phoneWidth}px) {
     font-size: ${terminalFontSize * 0.4}px;
     line-height: 1.5em;
