@@ -49,9 +49,11 @@ const titles = {
 export default function TopDrop({screen, setScreen}) {
 	const [title, setTitle] = useState(titles["1"].title)
 	const [isShowTitle, brieflyShow] = useShowTitle()
+
+
 	useEffect(() => {
 		brieflyShow()
-	})
+	},[])
 	const handleSwitchScreen = (toScreen) => {
 		setScreen(toScreen)
 		setTitle(titles[toScreen].title)
@@ -78,5 +80,6 @@ function useShowTitle(){
 			setIsShowTitle(false)
 		}, 2000)
 	}
+
 	return [isShowTitle, brieflyShow]
 }
