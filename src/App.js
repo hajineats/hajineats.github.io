@@ -33,10 +33,10 @@ const Screen = styled.div`
     background-color: darkblue;
   `}
   ${(props) => props.second && css`
-    background-color: midnightblue;
+    background-color: cornflowerblue;
   `}
   ${(props) => props.third && css`
-    background-color: cornflowerblue;
+    background-color: midnightblue;
   `}
 
 `

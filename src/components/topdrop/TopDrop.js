@@ -23,9 +23,12 @@ const TopContainer = styled.div`
 const ScreenTitle = styled.h1`
   display: block;
   color: transparent;
+  background-color: transparent;
+  padding: 15px;
   transition: 2s;
   ${props => props.show && css`
     color: white;
+    background-color: darkgray;
   `}
 
   ${props => !props.show && css`
@@ -48,7 +51,7 @@ export default function TopDrop({screen, setScreen}) {
 	const [isShowTitle, brieflyShow] = useShowTitle()
 	useEffect(() => {
 		brieflyShow()
-	}, [])
+	})
 	const handleSwitchScreen = (toScreen) => {
 		setScreen(toScreen)
 		setTitle(titles[toScreen].title)
