@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+import {useEffect, useState} from "react";
 
 const Button = styled.label`
   display: inline-block;
@@ -6,7 +7,7 @@ const Button = styled.label`
   height: 5px;
   margin: 2px;
   background-color: white;
-	cursor: pointer;
+  cursor: pointer;
 `
 const TopContainer = styled.div`
   position: absolute;
@@ -14,27 +15,65 @@ const TopContainer = styled.div`
   width: 100%;
   text-align: center;
 
-  ${Button}:nth-child(${props=>props.screen}) {
-    background-color: black;
+  ${Button}:nth-child(${props => props.screen}) {
+    background-color: yellowgreen;
   }
 `
 
+const ScreenTitle = styled.h1`
+  display: block;
+  color: transparent;
+  transition: 2s;
+  ${props => props.show && css`
+    color: white;
+  `}
+
+  ${props => !props.show && css`
+    color: transparent;
+  `}
+`
+const titles = {
+	1: {
+		title: "Interactive Console"
+	},
+	2: {
+		title: "Projects"
+	},
+	3: {
+		title: "Void"
+	}
+}
 export default function TopDrop({screen, setScreen}) {
+	const [title, setTitle] = useState(titles["1"].title)
+	const [isShowTitle, brieflyShow] = useShowTitle()
+	useEffect(() => {
+		brieflyShow()
+	}, [])
+	const handleSwitchScreen = (toScreen) => {
+		setScreen(toScreen)
+		setTitle(titles[toScreen].title)
+		brieflyShow()
+	}
+
 	return (
 		<TopContainer screen={screen}>
-			<Button onClick={() => setScreen(1)}/>
-			<Button onClick={() => setScreen(2)}/>
-			<Button onClick={() => setScreen(3)}/>
+			<Button onClick={() => handleSwitchScreen(1)}/>
+			<Button onClick={() => handleSwitchScreen(2)}/>
+			<Button onClick={() => handleSwitchScreen(3)}/>
+			<ScreenTitle show={isShowTitle}>
+				{title}
+			</ScreenTitle>
 		</TopContainer>
 	)
 }
 
-// /**
-//  *
-//  * @param currentScreen screen that is currently meant to show
-//  * @param forScreen the screen that this button is for
-//  * @constructor
-//  */
-// export function Button({currentScreen, forScreen}) {
-//
-// }
+function useShowTitle(){
+	const [isShowTitle, setIsShowTitle] = useState(false)
+	const brieflyShow = () => {
+		setIsShowTitle(true)
+		setTimeout(() => {
+			setIsShowTitle(false)
+		}, 2000)
+	}
+	return [isShowTitle, brieflyShow]
+}
